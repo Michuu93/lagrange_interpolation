@@ -1,0 +1,164 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TForm1 = class(TForm)
+    Label2: TLabel;
+    Edit1: TEdit;
+    Button1: TButton;
+    Label3: TLabel;
+    Label4: TLabel;
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+type vector = array [0..20] of Extended;
+
+var
+  Form1: TForm1;
+  i, n, st, y : Integer;
+  x, wynik : Extended;
+  f : vector;
+  plik: TextFile;
+
+implementation
+
+{$R *.dfm}
+
+function GReinschvalue (n      : Integer;
+                        f      : vector;
+                        x      : Extended;
+                        var st : Integer) : Extended;
+
+var i,k,m                 : Integer;
+    a,b,d,du,fx,p,pin,u,z : Extended;
+begin
+  if n<0
+    then st:=1
+    else begin
+           st:=0;
+           fx:=0;
+           for i:=0 to n do
+             fx:=fx+f[i];
+           fx:=fx/(n+1);
+           m:=n div 2;
+           d:=2/(n+1);
+           pin:=d*Pi;
+           for k:=1 to m do
+             begin
+               z:=k*pin;
+               u:=0;
+               du:=0;
+               if cos(z)>0
+                 then begin
+                        p:=-4*sqr(sin(z/2));
+                        for i:=n downto 0 do
+                          begin
+                            u:=du+u;
+                            du:=p*u+du+f[i]
+                          end
+                      end
+                 else begin
+                        p:=4*sqr(cos(z/2));
+                        for i:=n downto 0 do
+                          begin
+                            u:=du-u;
+                            du:=p*u-du+f[i]
+                          end
+                      end;
+               a:=d*(du-p*u/2);
+               b:=d*u*sin(z);
+               p:=k*x;
+               fx:=fx+a*cos(p)+b*sin(p)
+             end;
+           if odd(n)
+             then begin
+                    z:=(m+1)*pin;
+                    u:=0;
+                    du:=0;
+                    if cos(z)>0
+                      then begin
+                             p:=-4*sqr(sin(z/2));
+                             for i:=n downto 0 do
+                               begin
+                                 u:=du+u;
+                                 du:=p*u+du+f[i]
+                               end
+                           end
+                      else begin
+                             p:=4*sqr(cos(z/2));
+                             for i:=n downto 0 do
+                               begin
+                                 u:=du-u;
+                                 du:=p*u-du+f[i]
+                               end
+                           end;
+                    a:=(du-p*u/2)/(n+1);
+                    fx:=fx+a*cos((m+1)*x)
+                  end;
+           GReinschvalue:=fx
+         end
+end;
+
+procedure wczytaj_liste_txt();
+  var
+  plik : TextFile;
+  S : String; // zmienna tymczasowa
+  numer : Integer;
+  begin
+    numer:=0;
+    AssignFile(plik, 'f.txt');
+      try
+        Reset(plik);
+        { pêtla odczytuje kolejne wiersze pliku tekstowego }
+        while not Eof(plik) do
+        begin
+            if numer>20 then
+              begin
+                ShowMessage('Podaj maksymalnie 21 wartoœci f(x)!');
+                exit;
+              end;
+            Readln(plik, S); // odczytanie wierszy i przypisanie zawartoœci do zmiennej S
+            try
+              // f[numer]:=StrToInt(S);
+            except
+               ShowMessage('B³¹d wczytywania f(x)!');
+              exit;
+            end;
+
+            numer:=numer+1;
+        end;
+      finally
+        n:=numer-1;
+        CloseFile(plik);
+      end;
+    end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+    wczytaj_liste_txt;
+
+    Label3.Caption:= '';
+    Label4.Caption:= 'st =   n = ';
+
+    try
+      x:= StrToInt(Edit1.Text);
+    except
+      ShowMessage('Podaj x!');
+      exit;
+    end;
+
+    wynik:= GReinschvalue(n, f, x, st);
+    Label3.Caption:= FloatToStrF(wynik, ffExponent, 15, 4);
+    Label4.Caption:= 'st = ' + IntToStr(st) + '  n = ' + IntToStr(n);
+end;
+
+end.

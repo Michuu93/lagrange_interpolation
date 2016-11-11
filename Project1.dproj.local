@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899.12.30 00:00:00.000.736,C:\Users\Michal\Desktop\Program1\Unit1.dfm=C:\Users\Michal\Desktop\Program1\Interpolacja.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.234,C:\Users\Michal\Desktop\Program1\Unit2.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.174,C:\Users\Michal\Documents\RAD Studio\Projects\Unit1.pas=C:\Users\Michal\Desktop\Program1\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.895,C:\Users\Michal\Desktop\Program1\Funkcja.pas=</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.736,C:\Users\Michal\Desktop\Program1\Unit1.pas=C:\Users\Michal\Desktop\Program1\Interpolacja.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.756,C:\Users\Michal\Documents\RAD Studio\Projects\Project1.dproj=C:\Users\Michal\Desktop\Program1\Project1.dproj</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.463,=C:\Users\Michal\Desktop\Program1\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.304,C:\Users\Michal\Desktop\Program1\Unit2.pas=C:\Users\Michal\Desktop\Program1\Funkcja.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.656,=C:\Users\Michal\Documents\RAD Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.496,=C:\Users\Michal\Documents\RAD Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.737,C:\Users\Michal\Documents\RAD Studio\Projects\Unit2.pas=C:\Users\Michal\Desktop\Program1\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.444,=C:\Users\Michal\Documents\RAD Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.737,C:\Users\Michal\Documents\RAD Studio\Projects\Unit2.dfm=C:\Users\Michal\Desktop\Program1\Unit2.dfm</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.735,=C:\Users\Michal\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.503,=C:\Users\Michal\Documents\RAD Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>1899.12.30 00:00:00.000.174,C:\Users\Michal\Documents\RAD Studio\Projects\Unit1.dfm=C:\Users\Michal\Desktop\Program1\Unit1.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -1,0 +1,82 @@
+unit Unit2;
+
+interface
+
+implementation
+
+function GReinschvalue (n      : Integer;
+                        f      : vector;
+                        x      : Extended;
+                        var st : Integer) : Extended;
+
+var i,k,m                 : Integer;
+    a,b,d,du,fx,p,pin,u,z : Extended;
+begin
+  if n<0
+    then st:=1
+    else begin
+           st:=0;
+           fx:=0;
+           for i:=0 to n do
+             fx:=fx+f[i];
+           fx:=fx/(n+1);
+           m:=n div 2;
+           d:=2/(n+1);
+           pin:=d*Pi;
+           for k:=1 to m do
+             begin
+               z:=k*pin;
+               u:=0;
+               du:=0;
+               if cos(z)>0
+                 then begin
+                        p:=-4*sqr(sin(z/2));
+                        for i:=n downto 0 do
+                          begin
+                            u:=du+u;
+                            du:=p*u+du+f[i]
+                          end
+                      end
+                 else begin
+                        p:=4*sqr(cos(z/2));
+                        for i:=n downto 0 do
+                          begin
+                            u:=du-u;
+                            du:=p*u-du+f[i]
+                          end
+                      end;
+               a:=d*(du-p*u/2);
+               b:=d*u*sin(z);
+               p:=k*x;
+               fx:=fx+a*cos(p)+b*sin(p)
+             end;
+           if odd(n)
+             then begin
+                    z:=(m+1)*pin;
+                    u:=0;
+                    du:=0;
+                    if cos(z)>0
+                      then begin
+                             p:=-4*sqr(sin(z/2));
+                             for i:=n downto 0 do
+                               begin
+                                 u:=du+u;
+                                 du:=p*u+du+f[i]
+                               end
+                           end
+                      else begin
+                             p:=4*sqr(cos(z/2));
+                             for i:=n downto 0 do
+                               begin
+                                 u:=du-u;
+                                 du:=p*u-du+f[i]
+                               end
+                           end;
+                    a:=(du-p*u/2)/(n+1);
+                    fx:=fx+a*cos((m+1)*x)
+                  end;
+           GReinschvalue:=fx
+         end
+end;
+
+end.
